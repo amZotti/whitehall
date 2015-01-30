@@ -92,17 +92,17 @@ And go to http://localhost:3100/test/qunit in the browser
 
 #### Shared mustache templates
 
-The shared mustache templates must be compiled for javascript unit and functional tests to pass.
+The mustache templates (app/views/documents/_filter_selections.mustache and
+app/views/documents/_filter_tables.mustache) are compiled and stored in
+app/assets/javascripts/templates.js.
+
+Whenever the mustache templates are updated, they should also be recompiled so
+that app/assets/javascripts/templates.js is up to date:
 
     rake shared_mustache:compile
-    rake shared_mustache:clean
 
-Shared mustache templates are generated and stored in app/assets/javascripts/templates.js.
-
-In absence of this generated template, shared mustache inlines mustache templates in `<script>` blocks
-on the page, which enables developers to see changes to mustache without compiling. If this generated
-template is checked-in, shared mustache uses this file instead of inlining templates. Hence, we don't
-check-in this file.
+In development mode, the templates are inlined into the layout so any changes
+should be instantly reflected in the rendered page.
 
 ### Running the server locally
 
